@@ -1,0 +1,52 @@
+*{
+    margin: 2px;
+    padding: 2px;
+}
+.main-div{
+    max-width: 500px;
+    margin: auto;
+    border: 2px solid blue;
+}
+.child-div{
+    border: 2px solid purple;
+}
+.add-items{
+    border: 2px solid green;
+    display: flex;
+    justify-content: space-between;    
+    align-items: center;
+    margin-bottom: 2%;
+}
+input[type="text"]{
+    width: 100%;
+    margin: 0;
+    border: none;
+    outline: none;
+    padding: 2%;
+}
+.add{
+    cursor: pointer;
+}
+.show-items{
+    border: 2px solid orange;
+}
+.each-item{
+    border: 2px solid rgb(35, 163, 167);
+    background-color: #d8d8d8;
+    display: flex;
+    justify-content: space-between;    
+    align-items: center;
+
+}
+.trash{
+    border: 2px solid red;
+    cursor: pointer;
+}
+.btn{
+    border: 2px solid red;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: #998686;
+    color: #fff;
+}
