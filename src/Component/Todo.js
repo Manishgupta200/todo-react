@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { AiFillBug } from "react-icons/ai";
-import { FaPlusSquare } from "react-icons/fa";
+import { FaPlusSquare, FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import './Todo.css';
 
@@ -21,11 +21,45 @@ const Todo = () => {
 
     const [items, setItems] = useState(getLocalItem);
 
+    const [toggleSubmit, setToggleSubmit] = useState(true);
+
+    const [isEditItem, setIsEditItem] = useState(null);
+
+    const editItem = (id) => {
+        const newEditItem = items.find((elem) => {
+            return (id === elem.id)
+        })
+        console.log(newEditItem);
+
+        setToggleSubmit(false);
+
+        setInputData(newEditItem.name)
+
+        setIsEditItem(id);
+    }
+
     const addItem = () => {
-        if(inputData){
-            setItems([...items, inputData]);
+        if(inputData && !toggleSubmit){
+            setItems(
+                items.map((elem) => {
+                    if(elem.id === isEditItem){
+                        return {...elem, name: inputData};
+                    }
+                    return elem;
+                })
+            );
+
+            setToggleSubmit(true);
+
             setInputData("");
-        } 
+
+            setIsEditItem(null);
+        }
+        else if(inputData){
+            const allInputData = {id: new Date().getTime().toString(), name: inputData};
+            setItems([...items, allInputData]);
+            setInputData("");
+        }
         else{
             alert("Field is empty! Please input Something");
         }
@@ -33,8 +67,8 @@ const Todo = () => {
 
     const deleteItem = (id) => {
         console.log(id);
-        const updateItem = items.filter((elem, ind) => {
-            return (id !== ind);
+        const updateItem = items.filter((elem) => {
+            return (id !== elem.id);
         });
 
         setItems(updateItem);
@@ -59,7 +93,11 @@ const Todo = () => {
                     </figure>
                     <div className="add-items">
                         <input type="text" placeholder='😍 Add items...'  value={inputData} onChange={(event) => setInputData(event.target.value)} />
-                        <FaPlusSquare className='add' onClick={addItem} />
+                        {
+                            toggleSubmit ? <FaPlusSquare className='add' onClick={addItem} /> :
+                            <FaEdit className='add' onClick={addItem} />
+                        }
+                        
                     </div>
                     <div className="show-items">
                         {
@@ -68,11 +106,14 @@ const Todo = () => {
                                 <>
                                     <h5>...your lists...</h5>
                                     {
-                                        items.map((elem, ind) => {
+                                        items.map((elem) => {
                                             return(
-                                                <div className="each-item" key={ind}>
-                                                    <h3>{elem}</h3>
-                                                    <MdDelete className='trash' onClick={() => deleteItem(ind)} />
+                                                <div className="each-item" key={elem.id}>
+                                                    <h3>{elem.name}</h3>
+                                                    <div>
+                                                        <FaEdit className='trash' onClick={() => editItem(elem.id)}/>
+                                                        <MdDelete className='trash' onClick={() => deleteItem(elem.id)} />
+                                                    </div>
                                                 </div>
                                             )
                                         })
