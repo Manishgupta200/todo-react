@@ -38,11 +38,13 @@ input.searchField{
     width: 50%;    
 }
 .each-item{
+    width: 100%;
     border: 2px solid rgb(35, 163, 167);
-    background-color: #d8d8d8;
     display: flex;
     justify-content: space-between;    
     align-items: center;
+    cursor: grab;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
 }
 .trash{
     border: 2px solid red;
@@ -58,4 +60,15 @@ input.searchField{
 }
 .edit-mode{
     background-color: #fff;
+}
+.item-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.dragDrop{
+    margin: 0;
+    padding: 0;
+    border: 1px solid red;
 }
