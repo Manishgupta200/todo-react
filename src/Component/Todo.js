@@ -5,6 +5,9 @@ import { MdDelete } from "react-icons/md";
 import { GrDrag } from "react-icons/gr";
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
+import { isMobile } from 'react-device-detect'
+
 import './Todo.css';
 
 // get lists from loacl storage
@@ -153,7 +156,7 @@ const Todo = () => {
     }, [items]);
 
     return(
-            <DndProvider backend={HTML5Backend}>
+            <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
                 <div className="main-div">
                     <div className="child-div">
                         <figure>

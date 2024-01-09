@@ -59,7 +59,7 @@ input.searchField{
     color: #fff;
 }
 .edit-mode{
-    background-color: #fff;
+    background-color: #fff !important;
 }
 .item-row{
     display: flex;
