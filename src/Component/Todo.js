@@ -25,6 +25,15 @@ const Todo = () => {
 
     const [isEditItem, setIsEditItem] = useState(null);
 
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearch = (event) => {
+        setSearchQuery(event.target.value);
+    }
+    const filterItems = items.filter((item) => {
+        return item.name.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+
     const editItem = (id) => {
         const newEditItem = items.find((elem) => {
             return (id === elem.id)
@@ -75,7 +84,15 @@ const Todo = () => {
     }
 
     const clearAll = () => {
-        setItems([]);
+        if(items.length === 0){
+            alert("Nothing left to clear");
+        }
+        else{
+            const isConfirmed = window.confirm("Are you sure want to delete all your list. [this section can't be undone]");
+            if(isConfirmed){
+                setItems([]);
+            }
+        }
     }
 
     // set to local storege
@@ -105,10 +122,29 @@ const Todo = () => {
                             (
                                 <>
                                     <h5>...your lists...</h5>
+                                    <input type="text"className='searchField' placeholder='🔍 Search your list...' value={searchQuery} onChange={handleSearch}/>
                                     {
+                                        filterItems.length === 0 ? (<h5>No matching items found</h5>) :
+                                        (
+                                            <>
+                                                {
+                                                    filterItems.map((elem) => (
+                                                        <div className={`each-item ${isEditItem === elem.id ? 'edit-mode' : ''}`} key={elem.id} >
+                                                        <h3>{elem.name}</h3>
+                                                        <div>
+                                                            <FaEdit className='trash' onClick={() => editItem(elem.id)}/>
+                                                            <MdDelete className='trash' onClick={() => deleteItem(elem.id)} />
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </>
+                                        )
+                                    }
+                                    {/* {
                                         items.map((elem) => {
                                             return(
-                                                <div className="each-item" key={elem.id}>
+                                                <div className={`each-item ${isEditItem === elem.id ? 'edit-mode' : ''}`} key={elem.id} >
                                                     <h3>{elem.name}</h3>
                                                     <div>
                                                         <FaEdit className='trash' onClick={() => editItem(elem.id)}/>
@@ -117,7 +153,7 @@ const Todo = () => {
                                                 </div>
                                             )
                                         })
-                                    }
+                                    } */}
                                 </>
                             )
                         }   

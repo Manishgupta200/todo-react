@@ -6,6 +6,10 @@
     max-width: 500px;
     margin: auto;
     border: 2px solid blue;
+    background-color: #4bb390;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    
+    
 }
 .child-div{
     border: 2px solid purple;
@@ -30,13 +34,15 @@ input[type="text"]{
 .show-items{
     border: 2px solid orange;
 }
+input.searchField{
+    width: 50%;    
+}
 .each-item{
     border: 2px solid rgb(35, 163, 167);
     background-color: #d8d8d8;
     display: flex;
     justify-content: space-between;    
     align-items: center;
-
 }
 .trash{
     border: 2px solid red;
@@ -49,4 +55,7 @@ input[type="text"]{
 .btn:hover{
     background-color: #998686;
     color: #fff;
+}
+.edit-mode{
+    background-color: #fff;
 }
