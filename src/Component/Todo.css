@@ -5,70 +5,96 @@
 .main-div{
     max-width: 500px;
     margin: auto;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     background-color: #4bb390;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-    
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 85vh;
 }
 .child-div{
-    border: 2px solid purple;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 3%;
+    width: 85%;
 }
 .add-items{
-    border: 2px solid green;
+    /* border: 2px solid green; */
     display: flex;
     justify-content: space-between;    
     align-items: center;
     margin-bottom: 2%;
 }
 input[type="text"]{
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     width: 100%;
     margin: 0;
-    border: none;
     outline: none;
     padding: 2%;
 }
 .add{
     cursor: pointer;
+    margin-left: 2%;
 }
 .show-items{
-    border: 2px solid orange;
+    /* border: 2px solid orange; */
+    margin-top: 2%;
 }
 input.searchField{
     width: 50%;    
+    margin-bottom: 2%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 .each-item{
     width: 100%;
-    border: 2px solid rgb(35, 163, 167);
     display: flex;
     justify-content: space-between;    
     align-items: center;
     cursor: grab;
+
+    padding: 1.5%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out, background-color 0.3s ease;
 }
-.trash{
-    border: 2px solid red;
+.each-item:hover .trash{
+    background-color: #eee;
+    border-radius: 5px;
     cursor: pointer;
 }
 .btn{
-    border: 2px solid red;
+    cursor: pointer;
+    background-color: #ff5252;
+    color: white;
+    border: none;
+    padding: 2% 1.5%;
+    border-radius: 5px;
     cursor: pointer;
 }
-.btn:hover{
-    background-color: #998686;
-    color: #fff;
+.btn:hover {
+    background-color: #e04f4f;
 }
+
 .edit-mode{
-    background-color: #fff !important;
+    background-color: #f0f0f0 !important;
 }
 .item-row{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-bottom: 1.5%;
 }
 .dragDrop{
     margin: 0;
     padding: 0;
     border: 1px solid red;
+    margin-right: 1%;
 }
